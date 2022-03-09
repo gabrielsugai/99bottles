@@ -4,21 +4,25 @@ class BottleVerse
     when 0
       "No more bottles of beer on the wall, no more bottles of beer.\n" +
       "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+    when 1
+      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
+        "Take it down and pass it around, no more #{container(count - 1)} of beer on the wall.\n"
     when 6
       "1 six-pack of beer on the wall, 1 six-pack of beer.\n" +
-      "Take one down and pass it around, #{count - 1} bottles of beer on the wall.\n"
-    when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\n" +
-      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+      "Take one down and pass it around, #{count - 1} #{container(count - 1)} of beer on the wall.\n"
     when 7
-      "#{count} bottles of beer on the wall, #{count} bottles of beer.\n" +
+      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
       "Take one down and pass it around, 1 six-pack of beer on the wall.\n"
-    when 2
-      "#{count} bottles of beer on the wall, #{count} bottles of beer.\n" +
-      "Take one down and pass it around, #{count - 1} bottle of beer on the wall.\n"
     else
-      "#{count} bottles of beer on the wall, #{count} bottles of beer.\n" +
-      "Take one down and pass it around, #{count - 1} bottles of beer on the wall.\n"
+      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
+      "Take one down and pass it around, #{count - 1} #{container(count - 1)} of beer on the wall.\n"
+    end
+  end
+
+  def self.container(number)
+    case number
+    when 1 then 'bottle'
+    else 'bottles'
     end
   end
 end
