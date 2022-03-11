@@ -1,29 +1,32 @@
 class BottleVerse
-  def self.lyrics(count)
-    case count
-    when 0
+  def self.lyrics(number)
+    if number == 0
       "No more bottles of beer on the wall, no more bottles of beer.\n" +
       "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-    when 1
-      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
-        "Take it down and pass it around, no more #{container(count - 1)} of beer on the wall.\n"
-    when 6
-      "1 six-pack of beer on the wall, 1 six-pack of beer.\n" +
-      "Take one down and pass it around, #{count - 1} #{container(count - 1)} of beer on the wall.\n"
-    when 7
-      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
-      "Take one down and pass it around, 1 six-pack of beer on the wall.\n"
     else
-      "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
-      "Take one down and pass it around, #{count - 1} #{container(count - 1)} of beer on the wall.\n"
+      "#{number} #{container(number)} of beer on the wall, " +
+      "#{number} #{container(number)} of beer.\n" +
+      "Take #{pronoun(number)} down and pass it around, " +
+      "#{quantity(number-1)} #{container(number - 1)} of beer on the wall.\n"
     end
   end
 
   def self.container(number)
-    case number
-    when 1 then 'bottle'
-    else 'bottles'
-    end
+    return 'bottle' if number == 1
+
+    'bottles'
+  end
+
+  def self.quantity(number)
+    return 'no more' if number == 0
+
+    number
+  end
+
+  def self.pronoun(number)
+    return 'it' if number == 1
+
+    'one'
   end
 end
 
@@ -48,3 +51,9 @@ class CountdownSong
   end
 end
 
+# when 6
+#   "1 six-pack of beer on the wall, 1 six-pack of beer.\n" +
+#   "Take one down and pass it around, #{quantity(count-1)} #{container(count - 1)} of beer on the wall.\n"
+# when 7
+#   "#{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.\n" +
+#   "Take one down and pass it around, 1 six-pack of beer on the wall.\n"
