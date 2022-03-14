@@ -1,14 +1,15 @@
 class BottleVerse
   def self.lyrics(number)
-    if number == 0
-      "No more bottles of beer on the wall, no more bottles of beer.\n" +
-      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
-    else
-      "#{number} #{container(number)} of beer on the wall, " +
-      "#{number} #{container(number)} of beer.\n" +
-      "Take #{pronoun(number)} down and pass it around, " +
-      "#{quantity(number-1)} #{container(number - 1)} of beer on the wall.\n"
-    end
+    "#{quantity(number).capitalize} #{container(number)} of beer on the wall, " +
+      "#{quantity(number)} #{container(number)} of beer.\n" +
+      "#{action(number)}, " +
+      "#{quantity(successor(number))} #{container(number - 1)} of beer on the wall.\n"
+  end
+
+  def self.action(number)
+    return "Go to the store and buy some more" if number == 0
+
+    "Take #{pronoun(number)} down and pass it around"
   end
 
   def self.container(number)
@@ -20,7 +21,13 @@ class BottleVerse
   def self.quantity(number)
     return 'no more' if number == 0
 
-    number
+    number.to_s
+  end
+
+  def self.successor(number)
+    return 99 if number == 0
+
+    number - 1
   end
 
   def self.pronoun(number)
