@@ -7,30 +7,58 @@ class BottleVerse
   end
 
   def self.action(number)
-    return "Go to the store and buy some more" if number == 0
-
-    "Take #{pronoun(number)} down and pass it around"
+    BottleNumber.new(number).action
   end
 
   def self.container(number)
+    BottleNumber.new(number).container
+  end
+
+  def self.quantity(number)
+    BottleNumber.new(number).quantity
+  end
+
+  def self.successor(number)
+    BottleNumber.new(number).successor
+  end
+
+  def self.pronoun(number)
+    BottleNumber.new(number).pronoun
+  end
+end
+
+class BottleNumber
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def action
+    return "Go to the store and buy some more" if number == 0
+
+    "Take #{pronoun} down and pass it around"
+  end
+
+  def container
     return 'bottle' if number == 1
 
     'bottles'
   end
 
-  def self.quantity(number)
+  def quantity
     return 'no more' if number == 0
 
     number.to_s
   end
 
-  def self.successor(number)
+  def successor
     return 99 if number == 0
 
     number - 1
   end
 
-  def self.pronoun(number)
+  def pronoun
     return 'it' if number == 1
 
     'one'
