@@ -1,29 +1,12 @@
 class BottleVerse
   def self.lyrics(number)
-    "#{quantity(number).capitalize} #{container(number)} of beer on the wall, " +
-      "#{quantity(number)} #{container(number)} of beer.\n" +
-      "#{action(number)}, " +
-      "#{quantity(successor(number))} #{container(number - 1)} of beer on the wall.\n"
-  end
+    bottle_number = BottleNumber.new(number)
+    next_bottle_number = BottleNumber.new(bottle_number.successor)
 
-  def self.action(number)
-    BottleNumber.new(number).action
-  end
-
-  def self.container(number)
-    BottleNumber.new(number).container
-  end
-
-  def self.quantity(number)
-    BottleNumber.new(number).quantity
-  end
-
-  def self.successor(number)
-    BottleNumber.new(number).successor
-  end
-
-  def self.pronoun(number)
-    BottleNumber.new(number).pronoun
+    "#{bottle_number.quantity.capitalize} #{bottle_number.container} of beer on the wall, " +
+      "#{bottle_number.quantity} #{bottle_number.container} of beer.\n" +
+      "#{bottle_number.action}, " +
+      "#{next_bottle_number.quantity} #{next_bottle_number.container} of beer on the wall.\n"
   end
 end
 
